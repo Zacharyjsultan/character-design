@@ -13,55 +13,55 @@ const catchphraseInput = document.getElementById('catchphrase-input');
 const catchphraseButton = document.getElementById('catchphrase-button');
 
 // set state for how many times the user changes the head, middle, and bottom
-let headcount = 0;
-let middlecount = 0;
-let bottomcount = 0;
+let headCount = 0;
+let middleCount = 0;
+let bottomCount = 0;
 // set state for all of the character's catchphrases
-let catchphrasesEl = [];
+let catchphrases = [''];
 
 
 headDropdown.addEventListener('change', () => {
   
-        const value = headDropdown.value;
+    const headdrop = headDropdown.value;
 
-        headCount++;
+    headCount++;
 
-        headEl.style.backgroundImage = `url./assets/${headDropdown.value}-head.png`;
+    headEl.style.backgroundImage = `url(./assets/${headDropdown.value}-head.png)`;
 
-        displayStats ();
+    displayStats ();
 });
 
 
 middleDropdown.addEventListener('change', () => {
 
-        const value = middleDropdown.value;
+    const middledrop = middleDropdown.value;
 
-        middleCount++;
+    middleCount++;
 
-         middleEl.style.backgroundImage = `.assets/${middleDropdown.value}-middle.png`;
+    middleEl.style.backgroundImage = `url(./assets/${middleDropdown.value}-middle.png)`;
 
-        displayStats ();
+    displayStats ();
 });
 
 
 bottomDropdown.addEventListener('change', () => {
     
-         const value = bottomDropdown.value;
+    const bottomdrop = bottomDropdown.value;
    
-        bottomcount++;
+    bottomCount++;
 
-        bottomEl.style.backgroundImage == `./assets/${bottomDropdown.value}-pants.png`;
+    bottomEl.style.backgroundImage = `url(./assets/${bottomDropdown.value}-pants.png)`;
 
-        displayStats ();
+    displayStats ();
 });
 
 catchphraseButton.addEventListener('click', () => {
     // get the value of the catchphrase input
     const theCatchphrase = catchphraseInput.value;
     // push the new catchphrase to the catchphrase array in state
-
+    catchphrases.push(catchphraseInput);
     // clear out the form input's value so it's empty to the user
-   
+    catchphraseInput.value = '';
     // update the dom to show the new catchphrases (refactor to/call displayCatchphrases to do this work)
 
 });
@@ -72,12 +72,13 @@ function displayStats() {
 
 function displayCatchphrases() {
     // clear out the DOM for the currently displayed catchphrases
-
+    catchphrasesEl.textContent = '';
     // loop through each catchphrase in state
-   
+
     // and for each catchphrase
     
     // create an HTML element with the catchphrase as its text content
-    
+    const pTag = document.createElement('p');
     // and append that HTML element to the cleared-out DOM
+    div.append(pTag);
 }
