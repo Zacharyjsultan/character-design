@@ -80,7 +80,7 @@ function displayCatchphrases() {
     catchphrasesEl.textContent = '';
     // loop through each catchphrase in state
     for (let catchphrase of catchphrases) {
-        const p = document.createElement('p');
+        const catchphrasesEl = document.createElement('p');
     }
 
     p.classList.add('catchphrase');
