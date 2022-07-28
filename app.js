@@ -12,12 +12,15 @@ const catchphrasesEl = document.getElementById('catchphrases');
 const catchphraseInput = document.getElementById('catchphrase-input');
 const catchphraseButton = document.getElementById('catchphrase-button');
 
-// set state for how many times the user changes the head, middle, and bottom
+export function createStatsString(headNum, middleNum, bottomNum) {
+    return `You have changed the head ${headNum} times, the body ${middleNum} times, and the pants ${bottomNum} times. And nobody can forget your character's classic catchphrases:`;
+}
+
 let headCount = 0;
 let middleCount = 0;
 let bottomCount = 0;
 // set state for all of the character's catchphrases
-let catchphrases = [''];
+const catchphrases = ['Holy Canolli!', 'GREAT SCOTT!', 'WHAT A CHUNGUS!'];
 
 
 headDropdown.addEventListener('change', () => {
@@ -67,18 +70,21 @@ catchphraseButton.addEventListener('click', () => {
 });
 
 function displayStats() {
-    // text content of the reportEl to tell the user how many times they've changed each piece of the state
+    const statsString = createStatsString(headCount, middleCount, bottomCount);
+    
+    reportEl.textContent = statsString;
 }
 
 function displayCatchphrases() {
     // clear out the DOM for the currently displayed catchphrases
     catchphrasesEl.textContent = '';
     // loop through each catchphrase in state
+    for (let catchphrase of catchphrases) {
+        const p = document.createElement('p');
+    }
 
-    // and for each catchphrase
-    
-    // create an HTML element with the catchphrase as its text content
-    const pTag = document.createElement('p');
-    // and append that HTML element to the cleared-out DOM
-    div.append(pTag);
+    p.classList.add('catchphrase');
+    p.textContent = catchphrase;
+
+    catchphrasesEl.append('p');
 }
