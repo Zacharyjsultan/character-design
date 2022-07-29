@@ -6,26 +6,25 @@ const bottomDropdown = document.getElementById('bottom-dropdown');
 const headEl = document.getElementById('head');
 const middleEl = document.getElementById('middle');
 const bottomEl = document.getElementById('bottom');
+
 const reportEl = document.getElementById('report');
 
 const catchphrasesEl = document.getElementById('catchphrases');
 const catchphraseInput = document.getElementById('catchphrase-input');
 const catchphraseButton = document.getElementById('catchphrase-button');
 
-export function createStatsString(headNum, middleNum, bottomNum) {
-    return `You have changed the head ${headNum} times, the body ${middleNum} times, and the pants ${bottomNum} times. And nobody can forget your character's classic catchphrases:`;
-}
+
 
 let headCount = 0;
 let middleCount = 0;
 let bottomCount = 0;
-// set state for all of the character's catchphrases
-const catchphrases = ['Holy Canolli!', 'GREAT SCOTT!', 'WHAT A CHUNGUS!'];
+
+const catchphrases = [];
 
 
 headDropdown.addEventListener('change', () => {
   
-    const headdrop = headDropdown.value;
+    const value = headDropdown.value;
 
     headCount++;
 
@@ -37,7 +36,7 @@ headDropdown.addEventListener('change', () => {
 
 middleDropdown.addEventListener('change', () => {
 
-    const middledrop = middleDropdown.value;
+    const value = middleDropdown.value;
 
     middleCount++;
 
@@ -49,7 +48,7 @@ middleDropdown.addEventListener('change', () => {
 
 bottomDropdown.addEventListener('change', () => {
     
-    const bottomdrop = bottomDropdown.value;
+    const value = bottomDropdown.value;
    
     bottomCount++;
 
@@ -60,13 +59,14 @@ bottomDropdown.addEventListener('change', () => {
 
 catchphraseButton.addEventListener('click', () => {
     // get the value of the catchphrase input
-    const theCatchphrase = catchphraseInput.value;
-    // push the new catchphrase to the catchphrase array in state
-    catchphrases.push(catchphraseInput);
-    // clear out the form input's value so it's empty to the user
-    catchphraseInput.value = '';
-    // update the dom to show the new catchphrases (refactor to/call displayCatchphrases to do this work)
+    const newCatchphrase = catchphraseInput.value;
 
+    catchphrases.push(newCatchphrase);
+
+    catchphraseInput.value = '';
+
+
+    displayCatchphrases();
 });
 
 function displayStats() {
@@ -76,15 +76,21 @@ function displayStats() {
 }
 
 function displayCatchphrases() {
-    // clear out the DOM for the currently displayed catchphrases
+
     catchphrasesEl.textContent = '';
-    // loop through each catchphrase in state
+
     for (let catchphrase of catchphrases) {
-        const catchphrasesEl = document.createElement('p');
-    }
+        const p = document.createElement('p');
+    
 
-    p.classList.add('catchphrase');
-    p.textContent = catchphrase;
+        catchphrasesEl.classList.add('catchphrase');
+        catchphrasesEl.textContent = catchphrases;
 
-    catchphrasesEl.append('p');
+        catchphrasesEl.append('p');
+
+}
+}
+
+function createStatsString(headNum, middleNum, bottomNum) {
+    return `You have changed the head ${headNum} times, the body ${middleNum} times, and the pants ${bottomNum} times. And nobody can forget your character's classic catchphrases:`;
 }
